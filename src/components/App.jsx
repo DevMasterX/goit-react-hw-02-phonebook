@@ -1,21 +1,25 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: ['Rosie Simpson', 'Hermione Kline', 'Eden Clements'],
     name: '',
   };
 
-  handleInputChange = (event) => {
-    console.log(event.target.value)
-    this.setState({name: event.target.value})
-  }
+  handleInputChange = event => {
+    this.setState({ name: event.target.value });
+  };
 
-  // handleSubmit=event=>{
-  //   event.preventDefault()
-  //   this.setState({contacts: this.state.contacts.push(event.target.value)})
+  handleFormSubmit = event => {
+    event.preventDefault();
 
-  // }
+    const newContact = {
+      id: nanoid(),
+      name: this.state.name,
+    };
+
+    this.setState({ contacts: [...this.state.contacts, newContact], name: '' });
+  };
 
   // createContact=(dataByForm)=>{
   //   id: nanoid()
@@ -24,7 +28,7 @@ export class App extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleFormSubmit}>
           <div>
             <label htmlFor="exampleInputTodo">Name</label>
             <input
@@ -33,10 +37,8 @@ export class App extends Component {
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
-
               value={this.state.name}
               onChange={this.handleInputChange}
-
             />
           </div>
 
@@ -44,10 +46,11 @@ export class App extends Component {
         </form>
 
         <ul>
-          <li></li>
+          {this.state.contacts.map(contact => (
+            <li key={contact.id}>{contact.name}</li>
+          ))}
         </ul>
       </>
     );
   }
 }
-
