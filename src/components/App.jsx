@@ -13,10 +13,6 @@ export class App extends Component {
     number: '',
   };
 
-  // handleInputChange = event => {
-  //   this.setState({ name: event.target.value });
-  // };
-
   handleInputChange = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
   };
@@ -31,13 +27,22 @@ export class App extends Component {
     };
 
     this.setState({
-      contacts: [...this.state.contacts, newContact],
+      contacts: [newContact, ...this.state.contacts],
       name: '',
       number: '',
     });
   };
 
+  getFilteredContacts = () => {
+    const normalizedFilter = this.state.filter.toLowerCase();
+
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
   render() {
+    const filteredContacts = this.getFilteredContacts();
     return (
       <>
         <h1>Phonebook</h1>
@@ -86,7 +91,7 @@ export class App extends Component {
         </label>
 
         <ul>
-          {this.state.contacts.map(contact => (
+          {filteredContacts.map(contact => (
             <li key={contact.id}>
               {contact.name}: {contact.number}
             </li>
