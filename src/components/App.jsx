@@ -16,6 +16,13 @@ export class App extends Component {
   };
 
   createContact = dataByForm => {
+    const isAlreadyExist = this.state.contacts.find(
+      contact => contact.name === dataByForm.name
+    );
+    if (isAlreadyExist) {
+      return alert(`${dataByForm.name} is already in contacts`);
+    }
+
     const newContact = {
       ...dataByForm,
       id: nanoid,
@@ -23,6 +30,8 @@ export class App extends Component {
 
     this.setState(prev => ({ contacts: [newContact, ...prev.contacts] }));
   };
+
+  deleteContact = () => {};
 
   getFilteredContacts = () => {
     const normalizedFilter = this.state.filter.toLowerCase();
@@ -47,7 +56,10 @@ export class App extends Component {
 
         <h2>Contacts</h2>
         <Filter value={filter} onChangeFilter={this.handleFilterChange} />
-        <ContactList filteredContacts={filteredContacts} />
+        <ContactList
+          filteredContacts={filteredContacts}
+          deleteContact={this.deleteContact}
+        />
       </div>
     );
   }

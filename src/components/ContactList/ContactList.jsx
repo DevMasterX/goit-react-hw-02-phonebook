@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ContactList = ({ filteredContacts }) => {
+const ContactList = ({ filteredContacts, deleteContact }) => {
   return (
     <div>
       <ul>
