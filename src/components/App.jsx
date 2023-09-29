@@ -32,15 +32,21 @@ export class App extends Component {
     );
   };
 
+  handleFilterChange = ({ target: { value } }) => {
+    this.setState({ filter: value });
+  };
+
   render() {
     const filteredContacts = this.getFilteredContacts();
+    const { filter } = this.state;
+
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm createContact={this.createContact} />
 
         <h2>Contacts</h2>
-        <Filter />
+        <Filter value={filter} onChangeFilter={this.handleFilterChange} />
         <ContactList filteredContacts={filteredContacts} />
       </div>
     );

@@ -1,19 +1,20 @@
 import React from 'react';
 
-const Filter = () => {
+const Filter = ({ value, onChangeFilter }) => {
   return (
-    <>
+    <div>
       <label>
         Find contacts by name
         <input
           type="text"
           name="filter"
           placeholder="Search contacts..."
-          // value={this.state.filter}
-          // onChange={this.handleInputChange}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          value={value}
+          onChange={onChangeFilter}
         />
       </label>
-    </>
+    </div>
   );
 };
 
