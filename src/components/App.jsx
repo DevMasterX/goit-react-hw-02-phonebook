@@ -1,6 +1,9 @@
 import { Component } from 'react';
 
-import { ContactForm } from './ContactForm/ContactForm';
+import ContactForm from './ContactForm/ContactForm';
+import Filter from './Filter/Filter';
+import ContactList from './ContactList/ContactList';
+import { nanoid } from 'nanoid';
 export class App extends Component {
   state = {
     contacts: [
@@ -12,8 +15,13 @@ export class App extends Component {
     filter: '',
   };
 
-  handleInputChange = ({ target: { value, name } }) => {
-    this.setState({ [name]: value });
+  createContact = dataByForm => {
+    const newContact = {
+      ...dataByForm,
+      id: nanoid,
+    };
+
+    this.setState(prev => ({ contacts: [newContact, ...prev.contacts] }));
   };
 
   getFilteredContacts = () => {
@@ -29,27 +37,11 @@ export class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
+        <ContactForm createContact={this.createContact} />
 
         <h2>Contacts</h2>
-        <label>
-          Find contacts by name
-          <input
-            type="text"
-            name="filter"
-            placeholder="Search contacts..."
-            value={this.state.filter}
-            onChange={this.handleInputChange}
-          />
-        </label>
-
-        <ul>
-          {filteredContacts.map(contact => (
-            <li key={contact.id}>
-              {contact.name}: {contact.number}
-            </li>
-          ))}
-        </ul>
+        <Filter />
+        <ContactList filteredContacts={filteredContacts} />
       </div>
     );
   }
