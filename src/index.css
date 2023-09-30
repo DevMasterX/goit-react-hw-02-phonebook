@@ -7,9 +7,29 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  height: 100vh;
+  background: linear-gradient(45deg, #9890e3, #b1f4cf);
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.phonebook-wrapper{
+width: 320px;
+margin-left: auto;
+margin-right: auto;
+}
+
+ul {
+ padding:0;
 }

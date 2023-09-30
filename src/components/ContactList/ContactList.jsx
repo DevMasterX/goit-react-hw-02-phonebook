@@ -1,8 +1,9 @@
 import Contact from 'components/Contact/Contact';
+import { ContactListWrapper } from './ContactList.styled';
 
 const ContactList = ({ filteredContacts, deleteContact }) => {
   return (
-    <ul>
+    <ContactListWrapper>
       {filteredContacts.map(contact => (
         <Contact
           key={contact.id}
@@ -12,7 +13,7 @@ const ContactList = ({ filteredContacts, deleteContact }) => {
           deleteContact={deleteContact}
         />
       ))}
-    </ul>
+    </ContactListWrapper>
   );
 };
 

@@ -54,7 +54,7 @@ export class App extends Component {
     const { filter } = this.state;
 
     return (
-      <div>
+      <div className="phonebook-wrapper">
         <h1>Phonebook</h1>
         <ContactForm createContact={this.createContact} />
 
