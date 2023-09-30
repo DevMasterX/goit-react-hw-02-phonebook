@@ -45,12 +45,7 @@ export const AddButton = styled('button')(() => {
       fontWeight: '500px',
       cursor: 'pointer',
     },
-    '&:focus': {
-      borderColor: 'transparent',
-      scale: '0.99',
-      backgroundColor: '#6386d1',
-      boxShadow: '0px 0px 37px 6px rgba(34, 60, 80, 0.12)',
-    },
+
     transition: 'all 0.2s linear',
   };
 });

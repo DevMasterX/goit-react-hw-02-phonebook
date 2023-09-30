@@ -25,7 +25,7 @@ export class App extends Component {
 
     const newContact = {
       ...dataByForm,
-      id: nanoid,
+      id: nanoid(),
     };
 
     this.setState(prev => ({ contacts: [newContact, ...prev.contacts] }));

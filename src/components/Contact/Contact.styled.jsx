@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DeleteButton = styled('button')(() => {
   return {
-    padding: '3px',
+    padding: '4px',
     border: '1px solid #a09d9d',
     borderRadius: '5px',
     backgroundColor: '#feaaaa',
@@ -24,6 +24,6 @@ export const ContactItem = styled('li')(() => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '5px',
+    marginBottom: '7px',
   };
 });
