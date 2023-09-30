@@ -31,7 +31,11 @@ export class App extends Component {
     this.setState(prev => ({ contacts: [newContact, ...prev.contacts] }));
   };
 
-  deleteContact = () => {};
+  deleteContact = id => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(el => el.id !== id),
+    }));
+  };
 
   getFilteredContacts = () => {
     const normalizedFilter = this.state.filter.toLowerCase();
@@ -55,7 +59,12 @@ export class App extends Component {
         <ContactForm createContact={this.createContact} />
 
         <h2>Contacts</h2>
-        <Filter value={filter} onChangeFilter={this.handleFilterChange} />
+        {this.state.contacts.length > 0 ? (
+          <Filter value={filter} onChangeFilter={this.handleFilterChange} />
+        ) : (
+          <p>Your phonebook is empty. Add first contact!</p>
+        )}
+
         <ContactList
           filteredContacts={filteredContacts}
           deleteContact={this.deleteContact}

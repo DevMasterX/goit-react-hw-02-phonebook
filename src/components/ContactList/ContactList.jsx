@@ -1,14 +1,18 @@
+import Contact from 'components/Contact/Contact';
+
 const ContactList = ({ filteredContacts, deleteContact }) => {
   return (
-    <div>
-      <ul>
-        {filteredContacts.map(contact => (
-          <li key={contact.id}>
-            {contact.name}: {contact.number}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {filteredContacts.map(contact => (
+        <Contact
+          key={contact.id}
+          name={contact.name}
+          number={contact.number}
+          id={contact.id}
+          deleteContact={deleteContact}
+        />
+      ))}
+    </ul>
   );
 };
 
